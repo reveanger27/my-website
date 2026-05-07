@@ -1,252 +1,453 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Day 9 MY LANDING PAGE</title>
-        <meta name="viewport" content="width=device-width, initial-scale= 1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 9 - My Landing Page</title>
 
-        <style>
+    <style>
 
-            * {
-                box-sizing: border-box;
-                margin: 0;
-                padding: 0;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            html {
-                scroll-behavior: smooth;
-                scroll-padding-top: 40px;
-            }
+        html {
+            scroll-behavior: smooth;
+        }
 
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-                background-color: #f5f5f5;
-                
-            }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+        }
 
-            .navbar {
-                display:flex;
-                position: fixed;
-                top: 0;
-                width: 100%;
-                justify-content: space-between;
-                padding: 15px 30px;
-                background-color: black;
-                color: white;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            }
+        /* NAVBAR */
 
-            .navbar div:first-child {
-                font-weight: bold;
-            }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 70px;
 
-            .menu {
-                display: flex;
-                gap: 15px;
+            z-index: 999;
 
-            }
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-            .menu a {
-                color: #f5f5f5;
-                text-decoration: none;
-                transition: 0.3s;
-            }
+            padding: 15px 30px;
 
-            .menu a:hover {
-                color: yellow;
-                transform: scale(1.05);
-            }
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
 
-            .menu-toggle {
-                display: none;
-                font-size: 24px;
-                cursor: pointer;
-            }
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
 
-            .hero {
-                background-image: linear-gradient(to right, #74ebd5, #9face6);
-                display: flex;
-                justify-content: center;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-                padding: 60px 20px;
-                height: 100vh;
-            }
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
-            .hero p {
-                margin-bottom: 10px;
-                opacity: 0.9;
-            }
+        .menu {
+            display: flex;
+            gap: 20px;
+        }
 
-            .hero h1 {
-                font-size: 36px;
-                margin-bottom: 10px;
-            }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-            .hero button {
-                width:auto;
-                justify-content: center;
-                padding: 12px 25px;
-                margin-top: 15px;
-                background-color: white;
-                color: black;
-                border-radius: 20px;
-                cursor: pointer;
-                border: none;
-                font-weight: bold;
-                transition: 0.3s;
+        .menu a:hover {
+            color: yellow;
+        }
 
-            }
+        .menu-toggle {
+            display: none;
 
-            .hero button:hover {
-                color: white;
-                background-color: black;
-                transform: scale(1.05);
-            
-            }
+            background: none;
+            border: none;
+            color: white;
 
+            font-size: 24px;
+            cursor: pointer;
+        }
 
-            /* CONTENT */
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+            padding: 40px 20px;
+
+            background: linear-gradient(to right, #74ebd5, #9face6);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+
+            background: white;
+            color: black;
+
+            font-weight: bold;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        .hero button:hover {
+            background: black;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .hero button:active {
+            transform: scale(0.95);
+        }
+
+        /* SECTION */
+
+        section {
+            padding: 80px 20px;
+            scroll-margin-top: 70px;
+        }
+
+        section + section {
+            margin-top: 50px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* GRID */
+
         .container {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
-            padding: 40px 20px;
-            min-height: 100vh;
         }
+
+        /* CARD */
 
         .card {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+            opacity: 0;
+            transform: translateY(40px);
+
+            transition: 
+                opacity 0.6s ease,
+                transform 0.6s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card.show:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        /* BUTTON LINK */
+
+        .btn {
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            background: black;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 6px;
+
             transition: 0.3s;
         }
 
-
-        .card:hover {
-            transform: translateY(-5px);
+        .btn:hover {
+            background: #333;
         }
 
-        .card p{
-            margin-top: 8px;
-            font-size: 15px;
-            color: #555;
+        /* PROJECT SECTION */
+
+        #project {
+            background-color: #eef2f7;
         }
 
         /* FOOTER */
+
         .footer {
             text-align: center;
-            padding: 15px;
-            background-color: black;
+            padding: 30px 20px;
+
+            background: black;
             color: white;
-            height: 100vh;
         }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* ANIMATION DELAY */
+
+        .card:nth-child(1) {
+            transition-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            transition-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            transition-delay: 0.3s;
+        }
+
+        /* MOBILE */
 
         @media (max-width: 768px) {
 
-            .menu {
-                gap: 10px;
-                font-size: 14px;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                width: 100%;
-                background: black;
-                flex-direction: column;
-                text-align: center;
-
-                max-height: 0;
-                overflow: hidden;
-                transition: 0.3s;
-            }
-
-            .menu.active {
-                max-height: 200px;
+            .navbar {
+                padding: 12px 20px;
             }
 
             .menu-toggle {
                 display: block;
             }
-            
+
+            .menu {
+                position: absolute;
+                top: 60px;
+                right: 0;
+
+                width: 100%;
+
+                flex-direction: column;
+                text-align: center;
+
+                background: black;
+
+                overflow: hidden;
+                max-height: 0;
+                opacity: 0;
+
+                transition: 0.3s ease;
+            }
+
+            .menu.active {
+                max-height: 300px;
+                opacity: 1;
+            }
+
+            .menu a {
+                padding: 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
             .container {
-                padding: 20px 15px;
                 grid-template-columns: 1fr;
             }
-            
-            .navbar {
-                padding: 10px 15px;
-            }
-        
-            .hero h1 {
-                font-size: 24px;
-            }
-
-            .hero button {
-                padding: 10px 20px;
-            }
         }
-        </style>
 
+    </style>
+</head>
 
-    </head>
+<body>
 
+    <!-- NAVBAR -->
 
-    <body>
+    <div class="navbar">
 
-        <!--NAVBAR-->
-        <div class="navbar">
-            <div>The Reve</div>
+        <div class="logo">The Reve</div>
 
-            <div class="menu-toggle">☰</div>
+        <button class="menu-toggle">☰</button>
 
-            <div class="menu">                
-                <a href="#home">Home</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </div>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#project">Projects</a>
+            <a href="#contact">Contact</a>
         </div>
 
-        <!-- HERO -->    
-        <div class="hero" id="home">
-            <h1>Hi I am Reve</h1>
-            <p>Beginner web developer</p>
-            <button onclick="location.href='#about'">View My Work</button>
-        </div>
-        
-        <!--CONTENT-->
-        <div class="container" id="about">
+    </div>
+
+    <!-- HERO -->
+
+    <div class="hero" id="home">
+
+        <h1>Hi, I am Reve</h1>
+
+        <p>Beginner Web Developer</p>
+
+        <button onclick="location.href='#about'">
+            View My Work
+        </button>
+
+    </div>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+
+        <h2 class="section-title">About Me</h2>
+
+        <div class="container">
+
             <div class="card">
                 <h3>About Me</h3>
-                <p>I am learning web development step by step</p>    
+                <p>I am learning web development step by step.</p>
             </div>
+
             <div class="card">
-                <h3>Skill</h3>
-                <p>HTML, CSS(basic) </p>
+                <h3>Skills</h3>
+                <p>HTML, CSS, Responsive Design.</p>
             </div>
+
             <div class="card">
-                <h3>Goals</h3>    
-                <p>Become a professional developer</p>
+                <h3>Goals</h3>
+                <p>Become a professional web developer.</p>
             </div>
 
         </div>
 
-        <!--FOOTER-->
-        <div class="footer" id="contact">
-            <p>© 2026 My Website</p>
-            <p>Follow me on social media</p>
+    </section>
+
+    <!-- PROJECT -->
+
+    <section id="project">
+
+        <h2 class="section-title">My Projects</h2>
+
+        <div class="container">
+
+            <div class="card">
+
+                <img src="https://picsum.photos/300/150" alt="Project">
+
+                <h3>Landing Page</h3>
+
+                <p>This is my first website using HTML & CSS.</p>
+
+                <a 
+                    href="https://reveanger27.github.io/my-website" 
+                    target="_blank"
+                    class="btn"
+                >
+                    View Project
+                </a>
+
+            </div>
+
+            <div class="card">
+                <h3>Coming Soon</h3>
+                <p>I will add more projects here soon.</p>
+            </div>
+
+            <div class="card">
+                <h3>Future Project</h3>
+                <p>More cool things are coming 🚀</p>
+            </div>
 
         </div>
 
-        <script>
-            const toggle = document.querySelector(".menu-toggle");
-            const menu = document.querySelector(".menu");
+    </section>
 
-            toggle.addEventListener("click", () => {
-                menu.classList.toggle("active");
+    <!-- FOOTER -->
+
+    <div class="footer" id="contact">
+
+        <p>© 2026 My Website</p>
+        <p>Follow me on social media</p>
+
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+
+        const toggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector(".menu");
+
+        toggle.addEventListener("click", () => {
+            menu.classList.toggle("active");
+        });
+
+        const cards = document.querySelectorAll(".card");
+
+        function showCards() {
+
+            const triggerBottom = window.innerHeight * 0.85;
+
+            cards.forEach(card => {
+
+                const cardTop = card.getBoundingClientRect().top;
+
+                if (cardTop < triggerBottom) {
+                    card.classList.add("show");
+                }
+
             });
-        </script>
 
+        }
 
-    </body>
+        window.addEventListener("scroll", showCards);
+        window.addEventListener("load", showCards);
+
+    </script>
+
+</body>
 </html>
